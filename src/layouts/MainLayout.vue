@@ -18,12 +18,19 @@
 
       </b-navbar>
 
+      <div class="container">
+        <router-view />
+      </div>
+
   </main>
 </template>
 
 <script>
 export default {
-  name: 'MainLayout'
+  name: 'MainLayout',
+  async mounted() {
+    await this.$store.dispatch('INIT_USER_INFO')
+  }
 }
 </script>
 
