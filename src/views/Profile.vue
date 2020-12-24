@@ -9,7 +9,7 @@ export default {
   name: 'Profile',
   computed: {
     name() {
-      return this.$store.getters.USER_NAME
+      return this.$store.getters.USER_NAME || ''
     }
   }
 }

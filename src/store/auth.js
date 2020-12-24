@@ -20,10 +20,10 @@ export default {
         async INIT_USER_INFO({ dispatch, commit }) {
             try {
                 const uid = await dispatch('GET_ID')
-
                 const response = firebase.database().ref(`users/${uid}/info`)
                 response.on('value', (snapshot) => {
-                    commit('SET_USER', snapshot.val())
+                    if (snapshot.val())
+                        commit('SET_USER', snapshot.val())
                 })
             } catch(err) { throw err }
         },
