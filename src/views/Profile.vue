@@ -1,7 +1,7 @@
 <template>
   <div class="profile-page">
     <div class="row">
-      <div class="col-12 mt-4">
+      <div class="col-12">
         <h1>Редактировать профиль</h1>
         <b-form @submit.prevent="onSubmit" class="mt-3" v-if="show">
           <b-form-group
@@ -38,9 +38,6 @@
 <script>
 export default {
   name: 'Profile',
-  mounted() {
-    this.name = this.$store.getters.GET_USER.name
-  },
   data: () => ({
     show: true,
     name: ''

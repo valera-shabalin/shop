@@ -4,7 +4,8 @@ const routes = [
         name: 'Home',
         meta: {
           layout: 'main',
-          auth: false
+          auth: false,
+          admin: false
         },
         component: () => import('@/views/Home')
     },
@@ -13,7 +14,8 @@ const routes = [
         name: 'Login',
         meta: {
             layout: 'auth',
-            auth: false
+            auth: false,
+            admin: false
         },
         component: () => import('@/views/auth/Login')
     },
@@ -22,7 +24,8 @@ const routes = [
         name: 'Register',
         meta: {
             layout: 'auth',
-            auth: false
+            auth: false,
+            admin: false
         },
         component: () => import('@/views/auth/Register')
     },
@@ -31,7 +34,8 @@ const routes = [
         name: 'Profile',
         meta: {
             layout: 'main',
-            auth: true
+            auth: true,
+            admin: false
         },
         component: () => import('@/views/Profile')
     },
@@ -40,9 +44,20 @@ const routes = [
         name: 'Catalog',
         meta: {
             layout: 'main',
-            auth: false
+            auth: false,
+            admin: false
         },
         component: () => import('@/views/Catalog')
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        meta: {
+            layout: 'main',
+            auth: true,
+            admin: true
+        },
+        component: () => import('@/views/Admin')
     },
 ]
 

@@ -31,10 +31,9 @@ export default {
             } catch(err) { throw err }
         },
         async CHANGE_USER_INFO({ dispatch, commit }, { name, surname }) {
-            console.log(name, surname)
             try {
                 const uid = await dispatch('GET_ID')
-                await firebase.database().ref(`/users/${uid}/info`).set({ name, surname })
+                await firebase.database().ref(`/users/${uid}/info`).update({ name, surname })
                 commit('SET_USER', { name, surname })
             } catch(err) { throw err }
         },
@@ -43,11 +42,11 @@ export default {
                 await firebase.auth().signInWithEmailAndPassword(email, password)
             } catch(err) { throw err }
         },
-        async REGISTER({ dispatch, commit }, { email, password, name }) {
+        async REGISTER({ dispatch, commit }, { email, password, name, surname, admin }) {
             try {
                 await firebase.auth().createUserWithEmailAndPassword(email, password)
                 const uid = await dispatch('GET_ID')
-                await firebase.database().ref(`/users/${uid}/info`).set({ name })
+                await firebase.database().ref(`/users/${uid}/info`).set({ name, surname, admin })
             } catch(err) { throw err }
         },
         async LOGOUT({ commit }) {

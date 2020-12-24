@@ -67,8 +67,15 @@ export default {
   }),
   methods: {
     async onSubmit() {
+      const data = {
+        name: this.form.name,
+        surname: '',
+        email: this.form.email,
+        password: this.form.password,
+        admin: false
+      }
       try {
-        await this.$store.dispatch('REGISTER', this.form)
+        await this.$store.dispatch('REGISTER', data)
         await this.$router.push('/login')
       } catch(err) {
         alert(messages[err.code])

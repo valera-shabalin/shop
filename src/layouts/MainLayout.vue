@@ -10,7 +10,8 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item to="/" exact active-class="active">Главная</b-nav-item>
-            <b-nav-item to="/catalog" active-class="active">Каталог</b-nav-item>
+            <b-nav-item to="/admin" active-class="active" v-if="user.admin">Панель управления</b-nav-item>
+            <b-nav-item to="/catalog" active-class="active" v-else>Каталог</b-nav-item>
             <b-nav-item to="/profile" active-class="active" v-if="auth">Профиль</b-nav-item>
 
             <b-button @click.prevent="logout" class="ml-3" variant="outline-danger" v-if="auth">Выйти</b-button>
@@ -21,7 +22,7 @@
       </b-navbar>
 
       <div class="container">
-        <router-view />
+        <router-view class="mt-4" />
       </div>
 
   </main>
@@ -34,7 +35,12 @@ export default {
   name: 'MainLayout',
   async created() {
     await this.$store.dispatch('INIT_USER_INFO')
+    await this.$store.dispatch('INIT_CATALOG')
+    this.user = this.$store.getters.GET_USER
   },
+  data: () => ({
+    user: {}
+  }),
   computed: {
     auth() {
       return firebase.auth().currentUser
