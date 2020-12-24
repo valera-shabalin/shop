@@ -4,8 +4,11 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="auth-layout__menu">
-            <router-link to="/register" class="btn">Регистрация</router-link>
-            <router-link to="/login" class="btn">Авторизация</router-link>
+            <b-list-group horizontal="sm">
+              <b-list-group-item to="/">Главная</b-list-group-item>
+              <b-list-group-item to="/register">Регистрация</b-list-group-item>
+              <b-list-group-item to="/login">Авторизация</b-list-group-item>
+            </b-list-group>
           </div>
         </div>
         <div class="col-md-8">

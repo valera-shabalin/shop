@@ -57,16 +57,14 @@ import messages from '@/utils/messages'
 
 export default {
   name: 'Register',
-  data() {
-    return {
-      form: {
-        email: '',
-        name: '',
-        password: ''
-      },
-      show: true
-    }
-  },
+  data: () => ({
+    form: {
+      email: '',
+      name: '',
+      password: ''
+    },
+    show: true
+  }),
   methods: {
     async onSubmit() {
       try {

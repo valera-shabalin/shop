@@ -32,7 +32,7 @@ import firebase from 'firebase'
 
 export default {
   name: 'MainLayout',
-  async mounted() {
+  async created() {
     await this.$store.dispatch('INIT_USER_INFO')
   },
   computed: {

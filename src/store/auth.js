@@ -22,9 +22,20 @@ export default {
                 const uid = await dispatch('GET_ID')
                 const response = firebase.database().ref(`users/${uid}/info`)
                 response.on('value', (snapshot) => {
-                    if (snapshot.val())
-                        commit('SET_USER', snapshot.val())
+                    const data = snapshot.val()
+                    if (data) {
+                        data.email = firebase.auth().currentUser.email
+                        commit('SET_USER', data)
+                    }
                 })
+            } catch(err) { throw err }
+        },
+        async CHANGE_USER_INFO({ dispatch, commit }, { name, surname }) {
+            console.log(name, surname)
+            try {
+                const uid = await dispatch('GET_ID')
+                await firebase.database().ref(`/users/${uid}/info`).set({ name, surname })
+                commit('SET_USER', { name, surname })
             } catch(err) { throw err }
         },
         async LOGIN({ dispatch, commit }, { email, password }) {
@@ -47,8 +58,8 @@ export default {
         }
     },
     getters: {
-        USER_NAME(state) {
-            return state.user.name
+        GET_USER(state) {
+            return state.user
         }
     }
 }

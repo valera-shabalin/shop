@@ -57,7 +57,7 @@ export default {
     async onSubmit() {
       try {
         await this.$store.dispatch('LOGIN', this.form)
-        await this.$router.push('/')
+        await this.$router.push('/profile')
       } catch(err) {
         alert(messages[err.code])
       }
